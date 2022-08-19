@@ -1,0 +1,35 @@
+<!-- <ngb-timepicker  [(ngModel)]="time" [meridian]="meridian" size="small" > </ngb-timepicker>
+<button class="btn btn-sm btn-outline-{{meridian ? 'success' : 'danger'}} mt-3" (click)="toggleMeridian()">
+    Meridian - {{meridian ? "ON" : "OFF"}}
+</button>
+<hr>
+<pre>Selected time: {{time | json}}</pre> -->
+
+<!-- <div class="mi-directiva">
+    <h4>My directive</h4>
+    <input type="text" hoursDirective>
+</div> -->
+
+<div class="tP2">
+  <p>timePicker validaciones</p>
+  <input type="text" name="" id="" placeholder="text here" #texto class="mb-3" (keyup)="write()">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="mb-3">
+      <ngb-timepicker #picker formControlName="picker" (keyup)="lokura(picker)"></ngb-timepicker>
+      <!-- <ngb-timepicker #picker formControlName="picker" (ngModelChange)="lokura($event)"></ngb-timepicker> -->
+      <mat-error *ngIf="form.controls['picker'].hasError('required')">
+        fecha  <strong>requerida</strong>
+      </mat-error>
+      <!-- <mat-error *ngIf="form.controls['max'].hasError('pattern')">
+          formato incorrecto
+      </mat-error>  -->
+    </div>
+
+      <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">submit</button>
+    
+  </form>
+
+<hr>
+<pre>form valid : {{form.valid | json}}</pre>
+<pre>Selected time: {{form.value | json}}</pre>
+</div>

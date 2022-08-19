@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: 'products', loadChildren: ()=> import('./pages/products/products.module').then( m=>m.ProductsModule)},
   { path: 'checkout', loadChildren: () => import('./pages/checkout/checkout.module').then(m => m.CheckoutModule) },
+  { path: 'auth', loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule) },
   { path:'', redirectTo:'products', pathMatch:'full'},
   { path:'**', redirectTo:'products', pathMatch:'full'},
 ];

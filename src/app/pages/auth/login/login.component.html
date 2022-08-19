@@ -1,0 +1,31 @@
+<div class="content">
+    <mat-card class="my-card">
+        <mat-card-header>
+            <mat-card-title>Iniciar sesión</mat-card-title>        
+        </mat-card-header>
+        <img class="login-img" matCardImage src="./../../../../assets/img/login-avatar.jpeg">
+        <mat-card-content class="card-body">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field class="full-width">
+                            <mat-label> Correo electrónico </mat-label>
+                            <input matInput placeholder="user@domain.com" formControlName="email">
+                            <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+                                Nombre es <strong>requerido</strong>
+                            </mat-error>
+                            <mat-error *ngIf="loginForm.controls['email'].hasError('minlength')">
+                                Tiene menos de <strong>3</strong> caracteres
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-card-subtitle>
+                            Si aún no tienes una cuenta <a href=""><strong> !regístrate aquí! </strong></a>
+                        </mat-card-subtitle>
+                        <button mat-raised-button type="submit">Ingresar</button> 
+                    </div>       
+                </div>       
+            </form>
+            
+        </mat-card-content>
+    </mat-card>
+</div>

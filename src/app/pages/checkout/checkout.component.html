@@ -23,12 +23,12 @@
                 <div class="row">
                     <div class="col">
                         <mat-radio-group formControlName="PickupOrDelivery">
-                            <p>Seleccione método</p>
-                            <mat-radio-button value="pickup" (change)="onPickupOrDelivery(false)"  >
-                                Pickup
-                            </mat-radio-button>
+                            <p>Seleccione método</p>                            
                             <mat-radio-button value="delivery" (change)="onPickupOrDelivery(true)" >
                                 Delivery
+                            </mat-radio-button>
+                            <mat-radio-button value="pickup" (change)="onPickupOrDelivery(false)"  >
+                                Pickup
                             </mat-radio-button>
                         </mat-radio-group>
                     </div>
@@ -75,6 +75,7 @@
                 <div class="row">
                     <div class="col">
                         <button mat-raised-button color="primary" class="full-width" [disabled]="addressForm.invalid" type="submit">
+                            <!-- [disabled]="addressForm.invalid" -->
                             Checkout
                         </button>
                     </div>

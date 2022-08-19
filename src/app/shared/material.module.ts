@@ -16,7 +16,7 @@ import { MatTableModule} from '@angular/material/table';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatBadgeModule } from '@angular/material/badge';
+import { MatBadgeModule } from '@angular/material/badge'; 
 
 @NgModule({
   declarations: [],

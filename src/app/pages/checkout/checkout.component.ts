@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { tap } from 'rxjs';
+import { Order } from 'src/app/shared/interfaces/order.interface';
 import { Store } from 'src/app/shared/interfaces/store.interface';
 import { DataService } from 'src/app/shared/services/data.service';
 
@@ -24,7 +25,12 @@ export class CheckoutComponent implements OnInit {
   constructor(private fb: FormBuilder, private dataSvc:DataService) {}
 
   onSubmit(): void {
-    alert('Gracias por su compra!');
+    console.log(this.addressForm.value);
+    //enviar datos a la API
+  }
+
+  private getCurrentDay():string{
+    return new Date().toLocaleDateString();
   }
 
   ngOnInit(): void {
