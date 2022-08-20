@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm= this.fb.group({
-    email:['', Validators.email]
+    email:['', [Validators.email, Validators.required]]
   });
 
   constructor(private fb:FormBuilder) { }
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit():void{
-    console.log('ok');    
+    console.log('valores', this.loginForm.value);     
   }
 
 }

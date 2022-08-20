@@ -1,0 +1,24 @@
+.content{
+    // display: flex;
+    // justify-content: center;  
+    // flex-direction: column;  
+
+    .my-card{   
+        width: 80%;
+        margin: 20px auto;
+
+        .titl{
+            font-size: 20px;
+            font-weight: 500;
+        }
+        .login-img{
+            min-width: 100px;
+            min-height: 100px;
+            width: 150px;
+            height: 150px;
+        }
+        .full-width {
+            width: 100%;
+        }
+    }
+}

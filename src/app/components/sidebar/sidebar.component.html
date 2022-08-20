@@ -1,20 +1,41 @@
 <mat-sidenav-container class="sidenav-container">
+
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'push' : 'side'"
+      [mode]="(isHandset$ | async) ? 'side' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+    <mat-toolbar class="head">
 
-    </mat-nav-list>
-    <div class="p-3">
-      <app-time-picker ></app-time-picker>
+    </mat-toolbar>
+    <div class="profile">
+      <a routerLink="/about">
+        <img src="./../../../assets/img/perfil.jpg" class="img-fluid imgg rounded-circle" alt="">
+      </a>
+      <h4 class="name">Reisel Valle Rojas</h4>
+      <p class="titulo"> Ingeniero en Ciencias Informáticas</p>
     </div>
-
+    <mat-divider></mat-divider>
+    <mat-nav-list class="menu">
+      <a mat-list-item routerLink="/products" class="menu-item">
+        <mat-icon> store</mat-icon>
+        <span>Productos</span>
+      </a>
+      <a mat-list-item routerLink="/orders/orderList" class="menu-item">
+        <mat-icon> shopping_cart</mat-icon>
+        <span>Carrito</span>
+      </a>
+      <a mat-list-item routerLink="/about" class="menu-item">
+        <mat-icon> info</mat-icon>
+        <span> About</span>
+      </a>
+    </mat-nav-list>
+    <mat-divider></mat-divider>
+    <footer class="footer">
+      <p> <small class="text-light">Test para <a href="https://soaint.com/" class="text-white links">SOAINT</a>, por <a href="https://twitter.com/mdo" class="text-white">@reisel</a>.</small></p>
+    </footer>
+    
   </mat-sidenav>
+
   <mat-sidenav-content>
     <mat-toolbar color="primary">
       <button
@@ -25,17 +46,26 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <a routerLink="['/']"> <span>my-material-app</span>  </a>
-      <span class="spacer"></span>    
-      <app-cart 
-          matBadge="{{ qty$ |async | json }}"
-          matBadgeOverlap="false" 
-          matBadgePosition="above before"
-          matBadgeColor="primary"
-          matBadgeSize="medium"
-          (click)="goToCheckout()"
-          >
-      </app-cart>
+      <a routerLink="['/']" class="links"> My SOAINT test  </a>
+      <span class="spacer"></span> 
+      <div class="rightside-container d-flex flex-row align-items-center justify-content-end">
+        <div class="login">
+          <span >
+            <mat-icon class="mat-18" routerLink="/auth/login" >person</mat-icon>
+          </span>
+        </div>
+        <div class="cart">
+          <app-cart 
+              matBadge="{{ qty$ |async | json }}"
+              matBadgeOverlap="false" 
+              matBadgePosition="above after"
+              matBadgeColor="primary"
+              matBadgeSize="medium"
+              routerLink="/checkout"
+              >
+          </app-cart>
+        </div>   
+      </div>
       <span>  </span>
       <!-- <span matBadge="{{ qty$ |async | json }}" matBadgeOverlap="false" 
         matBadgePosition="above after" matBadgeColor="primary" matBadgeSize="small"></span> -->
@@ -45,4 +75,5 @@
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
+
 </mat-sidenav-container>

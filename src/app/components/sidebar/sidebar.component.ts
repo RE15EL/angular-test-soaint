@@ -23,8 +23,4 @@ export class SidebarComponent {
   constructor(private breakpointObserver: BreakpointObserver, private cartSvc:CartService, private router:Router) {
     this.qty$= cartSvc.qtyActions$;
   }
-  
-  goToCheckout():void{
-    this.router.navigate( ['/checkout']);
-  }
 }

@@ -1,1 +1,41 @@
-<p>register works!</p>
+<div class="content container">
+    <mat-card class=" my-card ">  
+        <mat-card-header class="title">
+            <mat-card-title>Regístrese</mat-card-title>
+        </mat-card-header>              
+        <mat-card-content class="card-body">
+            <!-- formulario -->
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field class="full-width my-3">
+                            <mat-label> Nombre </mat-label>
+                            <input matInput placeholder="name" formControlName="name" class="full-width">
+                            <mat-error *ngIf="registerForm.controls['name'].hasError('required')">
+                                Nombre es <strong>requerido</strong>
+                            </mat-error>
+                            <mat-error *ngIf="registerForm.controls['name'].hasError('minlength')">
+                                Tiene menos de <strong>3</strong> caracteres
+                            </mat-error>
+                        </mat-form-field>   
+                        <mat-form-field class="full-width my-3">
+                            <mat-label> Correo electrónico </mat-label>
+                            <input matInput placeholder="user@domain.com" formControlName="email" class="full-width">
+                            <mat-error *ngIf="registerForm.controls['email'].hasError('required')">
+                                Email es <strong>requerido</strong>
+                            </mat-error>
+                            <mat-error *ngIf="registerForm.controls['email'].hasError('email')">
+                                Email <strong>incorrecto</strong> 
+                            </mat-error>
+                        </mat-form-field>                                 
+                        <button mat-raised-button color="primary" type="submit" class="full-width" [disabled]="registerForm.invalid">Ingresar</button>
+                         
+                    </div>       
+                </div>     
+            </form>
+            <!--  -->
+        </mat-card-content>
+    </mat-card>
+            
+        
+</div>

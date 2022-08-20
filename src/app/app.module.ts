@@ -26,7 +26,7 @@ import { HoursDirectiveDirective } from './shared/directives/hours-directive.dir
     SidebarComponent,
     CartComponent,
     TimePickerComponent,
-    HoursDirectiveDirective,   
+    HoursDirectiveDirective,
   ],
   imports: [
     BrowserModule,
