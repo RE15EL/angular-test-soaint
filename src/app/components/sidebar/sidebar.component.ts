@@ -13,7 +13,7 @@ import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 })
 export class SidebarComponent {
   time = {hour: 12, minute: 30};
-  qty$;
+  qty:number=0;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -21,6 +21,6 @@ export class SidebarComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver, private cartSvc:CartService, private router:Router) {
-    this.qty$= cartSvc.qtyActions$;
+    cartSvc.qtyActions$.subscribe( res => this.qty= res);
   }
 }

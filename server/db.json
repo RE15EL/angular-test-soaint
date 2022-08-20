@@ -133,5 +133,11 @@
       "quantity": 10,
       "productName": "Product name"
     }
+  ],
+  "users":[
+    {
+      "name": "Reyy",
+      "email":"reiselvalle@gmail.com"
+    }
   ]
 }

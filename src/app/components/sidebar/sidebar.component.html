@@ -2,7 +2,7 @@
 
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'side' : 'side'"
+      [mode]="(isHandset$ | async) ? 'push' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar class="head">
 
@@ -56,12 +56,15 @@
         </div>
         <div class="cart">
           <app-cart 
-              matBadge="{{ qty$ |async | json }}"
+              matBadge="{{ qty }}"
               matBadgeOverlap="false" 
               matBadgePosition="above after"
-              matBadgeColor="primary"
-              matBadgeSize="medium"
-              routerLink="/checkout"
+              matBadgeColor="warn"
+              matBadgeSize="small"
+              matBadgeOverlap="false"
+              [matBadgeHidden]="qty==0"
+
+              routerLink="/checkout"            
               >
           </app-cart>
         </div>   

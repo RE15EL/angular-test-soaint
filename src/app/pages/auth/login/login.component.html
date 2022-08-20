@@ -17,7 +17,17 @@
                                 <mat-error *ngIf="loginForm.controls['email'].hasError('email')">
                                     Email <strong>incorrecto</strong> 
                                 </mat-error>
-                            </mat-form-field>                                    
+                            </mat-form-field>    
+                            <mat-form-field class="full-width my-3">
+                                <mat-label> Contraseña </mat-label>
+                                <input matInput placeholder="pass" formControlName="pass" class="full-width">
+                                <mat-error *ngIf="loginForm.controls['pass'].hasError('required')">
+                                    La contraseña es <strong>requerida</strong>
+                                </mat-error>
+                                <mat-error *ngIf="loginForm.controls['pass'].hasError('minlength')">
+                                    La contraseña tiene menos de <strong>5</strong> caracteres 
+                                </mat-error>
+                            </mat-form-field>                                 
                             <button [disabled]="loginForm.invalid" mat-raised-button color="primary" type="submit" class="full-width">Ingresar</button>
                             <mat-card-subtitle class="my-3">
                                 Si aún no tienes una cuenta 
