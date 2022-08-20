@@ -10,12 +10,17 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
   private apiUrl= 'http://localhost:3200';
+  private isloggedSubject=  new BehaviorSubject<boolean>(false);
 
   currentUser= new BehaviorSubject<User>({name:'',  email:'', pass:''});
   users:User[]=[];
 
   constructor(private http:HttpClient, private router:Router) {
     this.getUsers().subscribe( res => this.users = res);
+  }
+
+  get isLoggued$(): Observable<boolean>{
+    return this.isloggedSubject.asObservable();
   }
 
   register(user:User):Observable<any>{
@@ -58,6 +63,7 @@ export class AuthService {
     }else{
       console.log( 'Bienvenido', user );
       this.currentUser.next(nextUser);
+      this.isloggedSubject.next(true);
       localStorage.setItem( 'user_logged', JSON.stringify(nextUser));
       this.router.navigate(['/']);
     }
@@ -66,6 +72,7 @@ export class AuthService {
   logout():void {
     localStorage.removeItem('user_logged');
     this.currentUser.next({name:'',  email:'', pass:''});
+    this.isloggedSubject.next(false);
     this.router.navigate(['/auth/login']);
   }
 
@@ -73,7 +80,7 @@ export class AuthService {
     const userData = localStorage.getItem('user_logged');
     return (userData !== null);
   }
-
+  
   getUsers():Observable<User[]>{
     return this.http.get<User[]>(`${this.apiUrl}/users`);
   }

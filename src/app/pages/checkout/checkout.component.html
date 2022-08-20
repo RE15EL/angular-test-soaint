@@ -1,65 +1,69 @@
 <div class="container">
-    <mat-card class="shipping-card">
-        <mat-card-header class="title">
-            <mat-card-title>Checkout Information</mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="body">            
-            <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
-                <!-- name -->
-                <div class="row">
-                    <div class="col">
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="Nombre" formControlName="name">
-                            <mat-error *ngIf="addressForm.controls['name'].hasError('required')">
-                                Nombre es <strong>requerido</strong>
-                            </mat-error>
-                            <mat-error *ngIf="addressForm.controls['name'].hasError('minlength')">
-                                Tiene menos de <strong>3</strong> caracteres
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <!-- PickupOrDelivery -->
-                <div class="row">
-                    <div class="col">
-                        <mat-radio-group formControlName="PickupOrDelivery">
-                            <p>Seleccione método</p>                            
-                            <mat-radio-button value="delivery" (change)="onPickupOrDelivery(true)" >
-                                Delivery
-                            </mat-radio-button>
-                            <mat-radio-button value="pickup" (change)="onPickupOrDelivery(false)"  >
-                                Pickup
-                            </mat-radio-button>
-                        </mat-radio-group>
-                    </div>
-                </div>
-                <ng-container *ngIf="isDelivery; else showStores"> <!-- si es servicio de entrega-->
-                    <!-- shippingAddress -->
+    <ng-container *ngIf="qty$!=0; else empyCart">
+        <mat-card class="shipping-card">
+            <mat-card-header class="title">
+                <mat-card-title>Checkout Information      </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="body">            
+                <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+                    <!-- name -->
                     <div class="row">
                         <div class="col">
                             <mat-form-field class="full-width">
-                                <input matInput placeholder="Dirección de entrega" formControlName="shippingAddress">
-                                <mat-error *ngIf="addressForm.controls['shippingAddress'].hasError('required')">
-                                    Dirección de entrega <strong>requerida</strong>
+                                <input matInput placeholder="Nombre" formControlName="name">
+                                <mat-error *ngIf="addressForm.controls['name'].hasError('required')">
+                                    Nombre es <strong>requerido</strong>
+                                </mat-error>
+                                <mat-error *ngIf="addressForm.controls['name'].hasError('minlength')">
+                                    Tiene menos de <strong>3</strong> caracteres
                                 </mat-error>
                             </mat-form-field>
                         </div>
                     </div>
+                    
+                    <!-- address -->
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width">
+                                <input matInput placeholder="Dirección" formControlName="address">
+                                <mat-error *ngIf="addressForm.controls['address'].hasError('required')">
+                                    La dirección es <strong>requerida</strong>
+                                </mat-error>
+                                <mat-error *ngIf="addressForm.controls['address'].hasError('minlength')">
+                                    Tiene menos de <strong>3</strong> caracteres
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
                     <!-- city -->
                     <div class="row">
                         <div class="col">
                             <mat-form-field class="full-width">
                                 <input matInput placeholder="Ciudad" formControlName="city">
                                 <mat-error *ngIf="addressForm.controls['city'].hasError('required')">
-                                    Ciudad <strong>requerida</strong>
+                                    La ciudad es <strong>requerida</strong>
+                                </mat-error>
+                                <mat-error *ngIf="addressForm.controls['city'].hasError('minlength')">
+                                    Tiene menos de <strong>3</strong> caracteres
                                 </mat-error>
                             </mat-form-field>
                         </div>
                     </div>
-                </ng-container>
-                <ng-template #showStores>
-                    <!-- store -->
+
+                    <!-- Delivery -->
                     <div class="row">
+                        <div class="col">
+                            <mat-radio-group formControlName="PickupOrDelivery"> 
+                                <mat-radio-button value="delivery"  [checked]="true">
+                                    Delivery
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                    
+                    <!-- store -->
+                    <!-- <div class="row">
                         <div class="col">
                             <mat-form-field class="full-width">
                                 <mat-label> Seleccione una tienda</mat-label>
@@ -70,26 +74,31 @@
                                 </mat-select>
                             </mat-form-field>
                         </div>
+                    </div> -->
+                    
+                    <!-- button -->
+                    <div class="row mt-3">
+                        <div class="col">
+                            <button mat-raised-button color="primary" class="full-width" [disabled]="addressForm.invalid" type="submit">
+                                <!-- [disabled]="addressForm.invalid" -->
+                                Checkout
+                            </button>
+                        </div>
                     </div>
-                </ng-template>                
-                <div class="row">
-                    <div class="col">
-                        <button mat-raised-button color="primary" class="full-width" [disabled]="addressForm.invalid" type="submit">
-                            <!-- [disabled]="addressForm.invalid" -->
-                            Checkout
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </mat-card-content>
-    </mat-card>
+                </form>
+            </mat-card-content>
+        </mat-card>
 
-    <mat-card class="details-card">
-        <mat-card-header class="title">
-            <mat-card-title>Checkout details</mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="body ">            
-            <app-details class="full-width"></app-details> 
-        </mat-card-content>
-    </mat-card>
+        <mat-card class="details-card">
+            <mat-card-header class="title">
+                <mat-card-title>Checkout details</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="body ">            
+                <app-details class="full-width"></app-details> 
+            </mat-card-content>
+        </mat-card>
+    </ng-container>
+    <ng-template #empyCart>
+        <h3>no ha agregado productos a su carrito de compras</h3>
+    </ng-template>
 </div>

@@ -49,11 +49,34 @@
       <a routerLink="['/']" class="links"> My SOAINT test  </a>
       <span class="spacer"></span> 
       <div class="rightside-container d-flex flex-row align-items-center justify-content-end">
+        <!-- login side -->
         <div class="login">
-          <span >
-            <mat-icon class="mat-18" routerLink="/auth/login" >person</mat-icon>
+          <span [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon class="mat-18" >person</mat-icon>
           </span>
+          <!-- menu -->
+          <mat-menu #menu="matMenu">
+            <!-- routerLink="/auth/login"  -->
+            <a mat-menu-item routerLink="/auth/register" >
+              <mat-icon>dialpad</mat-icon>
+              <span >Registro</span>
+            </a>
+            <ng-container *ngIf="!isUserLogged; else loginAction">
+              <a mat-menu-item  routerLink="/auth/login" >
+                <mat-icon>voicemail</mat-icon>
+                <span >Iniciar sesión</span>
+              </a>
+            </ng-container>
+            <ng-template #loginAction>
+              <a mat-menu-item (click)="logout()" >
+                <mat-icon>notifications_off</mat-icon>
+                <span >Cerrar sesión</span>
+              </a>
+          </ng-template>
+          </mat-menu>
         </div>
+
+        <!-- cart side -->
         <div class="cart">
           <app-cart 
               matBadge="{{ qty }}"
@@ -63,10 +86,11 @@
               matBadgeSize="small"
               matBadgeOverlap="false"
               [matBadgeHidden]="qty==0"
-
+              
               routerLink="/checkout"            
               >
           </app-cart>
+          
         </div>   
       </div>
       <span>  </span>

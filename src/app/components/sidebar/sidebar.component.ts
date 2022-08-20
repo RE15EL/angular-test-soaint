@@ -3,8 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { CartService } from 'src/app/shared/services/cart.service';
-import { Router } from '@angular/router';
-import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,6 +12,7 @@ import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 })
 export class SidebarComponent {
   time = {hour: 12, minute: 30};
+  isUserLogged!:boolean;
   qty:number=0;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -20,7 +20,15 @@ export class SidebarComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private cartSvc:CartService, private router:Router) {
+  constructor(private breakpointObserver: BreakpointObserver,
+              private cartSvc:CartService,
+              private authSvc:AuthService)
+  {
     cartSvc.qtyActions$.subscribe( res => this.qty= res);
+    authSvc.isLoggued$.subscribe( res => this.isUserLogged=res);
+  }
+
+  logout():void{
+    this.authSvc.logout();
   }
 }
