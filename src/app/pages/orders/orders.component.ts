@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { tap } from 'rxjs';
+import { Order } from 'src/app/shared/interfaces/order.interface';
+import { OrderService } from 'src/app/shared/services/order.service';
 
 @Component({
   selector: 'app-orders',
@@ -6,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent implements OnInit {
+  orders:Order[]=[];
 
-  constructor() { }
+  constructor(private orderSvc:OrderService) { }
 
   ngOnInit(): void {
+    this.orderSvc.getOrders()
+      .subscribe( res => this.orders = res);
   }
 
 }

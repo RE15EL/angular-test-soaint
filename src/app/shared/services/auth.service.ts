@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { User } from 'src/app/pages/auth/interfaces/user.interface';
 import { environment } from 'src/environments/environment';
+import { CartService } from './cart.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AuthService {
   currentUser= new BehaviorSubject<User>({name:'',  email:'', pass:''});
   users:User[]=[];
 
-  constructor(private http:HttpClient, private router:Router) {
+  constructor(private http:HttpClient, private router:Router,private cartSvc:CartService) {
     this.getUsers().subscribe( res => this.users = res);
   }
 
@@ -38,24 +39,7 @@ export class AuthService {
     );
     
   }
-  login(user:User){
-
-    // return this.http.post<any>(`${this.apiUrl}/login`, 
-    //   {
-    //     name: user.name,
-    //     email:user.email,
-    //     pass:user.pass
-    //   })
-    //   .pipe( 
-    //     tap( res => {
-    //       const nextUser:User= res;
-    //       this.currentUser.next(nextUser);
-    //       localStorage.setItem( 'user_logged', JSON.stringify(nextUser));
-    //       console.log('logueado: ', nextUser);
-          
-    //     })
-    //   ); 
-    
+  login(user:User){    
     const nextUser= this.users.find( ({email}) => user.email == email ); 
     if (!nextUser) {
       console.log( 'usuario no registrado', user );
@@ -73,6 +57,7 @@ export class AuthService {
     localStorage.removeItem('user_logged');
     this.currentUser.next({name:'',  email:'', pass:''});
     this.isloggedSubject.next(false);
+    this.cartSvc.resetCart();
     this.router.navigate(['/auth/login']);
   }
 

@@ -10,5 +10,5 @@ export interface Order{
     city:string;
     date:string;
     pickup:boolean;
-    id:number;
+    id?:number;
 } 

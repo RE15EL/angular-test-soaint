@@ -99,6 +99,27 @@
         </mat-card>
     </ng-container>
     <ng-template #empyCart>
-        <h3>no ha agregado productos a su carrito de compras</h3>
+        <mat-card class="shipping-card">
+            <mat-card-header>
+                <mat-card-title>Su carrito de compras esta vacío</mat-card-title>
+            </mat-card-header> 
+            <mat-card-content class="row p-3">
+                <div class="imggg col col-4-sm d-flex justify-content-center align-items-center">
+                    <img matCardImage src="./../../../assets/img/empty_shopping_cart.png" 
+                    class="img-fluid imgg ">
+                </div>
+                <div class="col col-8 d-flex justify-content-center align-items-center flex-column">
+                    <div class="des text-center">
+                        <p  class="desc ">
+                            Le brindamos una amplia variedad de <a routerLink="/products">productos</a> de distintas categorías (Libros, Electrónica, Computadoras),
+                            los cuales puede visualizar y agregar a su carrito si así lo desea. 
+                        </p>
+                        <h4>
+                            <a mat-raised-button routerLink="/products" class="bt"> Visualizar productos</a>
+                        </h4>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
     </ng-template>
 </div>

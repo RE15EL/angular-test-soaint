@@ -20,7 +20,7 @@
         <mat-icon> store</mat-icon>
         <span>Productos</span>
       </a>
-      <a mat-list-item routerLink="/orders/orderList" class="menu-item">
+      <a mat-list-item routerLink="/checkout/cart-details" class="menu-item">
         <mat-icon> shopping_cart</mat-icon>
         <span>Carrito</span>
       </a>
@@ -31,7 +31,7 @@
     </mat-nav-list>
     <mat-divider></mat-divider>
     <footer class="footer">
-      <p> <small class="text-light">Test para <a href="https://soaint.com/" class="text-white links">SOAINT</a>, por <a href="https://twitter.com/mdo" class="text-white">@reisel</a>.</small></p>
+      <p> <small class="text-light">Test para <a href="https://soaint.com/" class="text-white links">SOAINT</a>, por <a href="https://twitter.com/RE15EL" class="text-white">@reisel</a>.</small></p>
     </footer>
     
   </mat-sidenav>
@@ -55,21 +55,21 @@
             <mat-icon class="mat-18" >person</mat-icon>
           </span>
           <!-- menu -->
-          <mat-menu #menu="matMenu">
+          <mat-menu #menu="matMenu" yPosition="below">
             <!-- routerLink="/auth/login"  -->
             <a mat-menu-item routerLink="/auth/register" >
-              <mat-icon>dialpad</mat-icon>
+              <mat-icon>app_registration</mat-icon>
               <span >Registro</span>
             </a>
             <ng-container *ngIf="!isUserLogged; else loginAction">
               <a mat-menu-item  routerLink="/auth/login" >
-                <mat-icon>voicemail</mat-icon>
+                <mat-icon>login</mat-icon>
                 <span >Iniciar sesión</span>
               </a>
             </ng-container>
             <ng-template #loginAction>
               <a mat-menu-item (click)="logout()" >
-                <mat-icon>notifications_off</mat-icon>
+                <mat-icon>logout</mat-icon>
                 <span >Cerrar sesión</span>
               </a>
           </ng-template>

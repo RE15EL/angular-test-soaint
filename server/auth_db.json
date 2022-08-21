@@ -29,6 +29,12 @@
       "email": "jairo@gmail.com",
       "pass": "jairo",
       "id": 5
+    },
+    {
+      "name": "reisel",
+      "email": "reisel@gmail.com",
+      "pass": "reisel",
+      "id": 6
     }
   ]
 }

@@ -6,6 +6,7 @@
                 <th>Cantidad</th>
                 <th>Precio (u)</th>
                 <th>Subtotal</th>
+                <th></th>
             </thead>
             <tbody>
                 <tr *ngFor="let item of (cart$ | async)">
@@ -13,6 +14,9 @@
                     <td> {{ item.qty }}</td>
                     <td> {{ item.price | currency}}</td>
                     <td> {{ item.price * item.qty | currency}} </td>
+                    <td> 
+                        <button mat-button color="warn"> <mat-icon class="mat-18">delete</mat-icon></button>     
+                    </td>
                 </tr>
             </tbody>
         </table>    

@@ -1,1 +1,16 @@
-<p>order-list works!</p>
+<div class="orders">
+    <div class="card1">
+        <mat-card class="card2">
+            <mat-card-header>
+                <mat-card-title> {{order.id}} </mat-card-title>        
+            </mat-card-header>
+            <!-- <img matCardImage src="Card wide image source"> -->
+            <mat-card-content>
+                <mat-card-title>  {{ order.name }}</mat-card-title>
+                <mat-card-title > {{ order.shippingAddress  }}</mat-card-title>
+                <mat-card-title > {{ order.city  }}</mat-card-title>
+                <mat-card-title > {{ order.date  }}</mat-card-title>
+            </mat-card-content>            
+        </mat-card>
+    </div>
+</div>

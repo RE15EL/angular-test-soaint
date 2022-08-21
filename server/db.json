@@ -124,6 +124,22 @@
       "shippingAddress": "Av. de la Granvia de Hospitalet, 115",
       "city": "Barcelona",
       "pickup": true
+    },
+    {
+      "name": "Reisel",
+      "shippingAddress": "guasimal",
+      "city": "la habana",
+      "pickup": true,
+      "date": "20/8/2022",
+      "id": 2
+    },
+    {
+      "name": "Reisel",
+      "shippingAddress": "guasimal",
+      "city": "la habana",
+      "pickup": true,
+      "date": "20/8/2022",
+      "id": 3
     }
   ],
   "detailsOrders": [
@@ -134,10 +150,10 @@
       "productName": "Product name"
     }
   ],
-  "users":[
+  "users": [
     {
       "name": "Reyy",
-      "email":"reiselvalle@gmail.com"
+      "email": "reiselvalle@gmail.com"
     }
   ]
 }

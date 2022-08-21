@@ -14,7 +14,7 @@ export class CartService {
   
   constructor() { }
   
-  //obtener los obserables
+  //obtener los obserabless
   get cartActions$(): Observable<Product[]>{
     return this.cartSubject.asObservable();
   }
@@ -41,6 +41,7 @@ export class CartService {
     const qtyP= this.products.reduce( (cant, prod)=>cant+=prod.qty,0 );
     this.qtySubject.next(qtyP);
   }
+
   //obtener precio total
   private getTotalPrice():void{
     const total= this.products.reduce( (totalP, prod) => totalP+=(prod.price*prod.qty), 0);
@@ -53,4 +54,12 @@ export class CartService {
     this.getQty();
     this.getTotalPrice();
   }  
+
+  //resetear el carrito
+  resetCart():void{
+    this.products=[];
+    this.cartSubject.next(this.products);
+    this.qtySubject.next(0);
+    this.totaltSubject.next(0);
+  }
 }
