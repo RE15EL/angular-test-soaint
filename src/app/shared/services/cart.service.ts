@@ -36,6 +36,14 @@ export class CartService {
     this.cartSubject.next(this.products);
   }
 
+  //elimina un producto del carrito
+  delProdById(id:number):void{
+    const prodPos= this.products.findIndex( ( prod ) => prod.id === id ); //buscar si ya existe el producto
+    this.products.splice(prodPos,1); 
+    this.getQty();
+    this.cartSubject.next(this.products);
+  }
+
   //obtener cantidad de productos
   private getQty():void{
     const qtyP= this.products.reduce( (cant, prod)=>cant+=prod.qty,0 );

@@ -10,6 +10,7 @@ import { User } from '../interfaces/user.interface';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  hide = true;
   loginForm= this.fb.group({
     email:['', [Validators.email, Validators.required]],
     pass:['', [Validators.minLength(5), Validators.required]],

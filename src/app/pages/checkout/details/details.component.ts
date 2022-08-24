@@ -14,5 +14,7 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  deleteProd(id:number):void{
+    this.CartSvc.delProdById(id);
+  }
 }
