@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxToastService } from 'ngx-toast-notifier';
 import { tap } from 'rxjs';
 import { Order } from 'src/app/shared/interfaces/order.interface';
 import { Store } from 'src/app/shared/interfaces/store.interface';
@@ -30,7 +31,8 @@ export class CheckoutComponent implements OnInit {
               private authSvc:AuthService,
               private cartSvc:CartService,
               private orderSvc:OrderService,
-              private router:Router) 
+              private router:Router,
+              private ngxToastServ:NgxToastService) 
   {
     authSvc.isLoggued$.subscribe( res => this.isUserLogged=res);
   }
@@ -54,6 +56,7 @@ export class CheckoutComponent implements OnInit {
         tap(
           (res) => {
             // console.log(res);
+            this.ngxToastServ.onSuccess(`Compra satisfactoria `, 'Ha realizado el pago correctamente, su orden será procesada inmediatamente');
             this.cartSvc.resetCart();
           }  
         )
@@ -61,7 +64,8 @@ export class CheckoutComponent implements OnInit {
       .subscribe();
       
     }else{
-      console.log('no logueado');
+      // console.log('no logueado');
+      this.ngxToastServ.onWarning(`Usuario no logueado`, 'Para poder realizar el pago antes debe estar legueado en de la plataforma');
       this.router.navigate(['/auth/login']);
     }
   }

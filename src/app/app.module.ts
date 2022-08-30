@@ -8,9 +8,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductsModule } from './pages/products/products.module';
 
 
-//angular material module y ngbootstrap module
+//angular material module, ngbootstrap y NgxToastNotifierModule
 import { MaterialModule } from './shared/material.module';
 import { NgBootstrapModule } from './shared/ng-bootstrap.module';
+import { NgxToastNotifierModule } from 'ngx-toast-notifier';
 
 
 import { AppComponent } from './app.component';
@@ -35,6 +36,7 @@ import { HoursDirectiveDirective } from './shared/directives/hours-directive.dir
     BrowserAnimationsModule,
     MaterialModule,
     NgBootstrapModule,
+    NgxToastNotifierModule.forRoot(),
     ProductsModule,
     FormsModule,
     ReactiveFormsModule

@@ -49,6 +49,9 @@
       <a routerLink="['/']" class="links"> My SOAINT test  </a>
       <span class="spacer"></span> 
       <div class="rightside-container d-flex flex-row align-items-center justify-content-end">
+        <div class="user-logged" *ngIf="isUserLogged">
+          <p> {{ (userLogged$ | async)?.name | json}} </p>
+        </div>
         <!-- login side -->
         <div class="login">
           <span [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">

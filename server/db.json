@@ -140,6 +140,14 @@
       "pickup": true,
       "date": "20/8/2022",
       "id": 3
+    },
+    {
+      "name": "Reisel",
+      "shippingAddress": "Santiago de las Vegas",
+      "city": "Boyeros",
+      "pickup": true,
+      "date": "30/8/2022",
+      "id": 4
     }
   ],
   "detailsOrders": [

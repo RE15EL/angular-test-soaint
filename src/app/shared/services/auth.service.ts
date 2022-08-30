@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxToastService } from 'ngx-toast-notifier';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { User } from 'src/app/pages/auth/interfaces/user.interface';
-import { environment } from 'src/environments/environment';
 import { CartService } from './cart.service';
 
 @Injectable({
@@ -12,11 +12,10 @@ import { CartService } from './cart.service';
 export class AuthService {
   private apiUrl= 'http://localhost:3200';
   private isloggedSubject=  new BehaviorSubject<boolean>(false);
-
   currentUser= new BehaviorSubject<User>({name:'',  email:'', pass:''});
   users:User[]=[];
 
-  constructor(private http:HttpClient, private router:Router,private cartSvc:CartService) {
+  constructor(private http:HttpClient, private router:Router,private cartSvc:CartService, private ngxToastServ:NgxToastService) {
     this.getUsers().subscribe( res => this.users = res);
   }
 
@@ -24,9 +23,13 @@ export class AuthService {
     return this.isloggedSubject.asObservable();
   }
 
+  get currentUser$(): Observable<User>{
+    return this.currentUser.asObservable();
+  }
+
   register(user:User):Observable<any>{
     localStorage.setItem( 'usuario_registrado', JSON.stringify(user) );
-
+    this.ngxToastServ.onSuccess('Usuario registrado', 'Usted se ha registrado correctamente en la plataforma');
     return this.http.post<any>(`${this.apiUrl}/users`, 
     {
       name: user.name,
@@ -40,12 +43,12 @@ export class AuthService {
     
   }
   login(user:User){    
-    const nextUser= this.users.find( ({email}) => user.email == email ); 
-    if (!nextUser) {
-      console.log( 'usuario no registrado', user );
+    const nextUser= this.users.find( ({email,pass}) => (user.email == email) && (user.pass == pass) ); 
+    if ( !nextUser ) {
+      this.ngxToastServ.onDanger('Usuario no registrado', 'Por favor realice su registro para que pueda acceder a todas las funcionalidades de la plataforma');
       this.router.navigate(['/auth/register']);
     }else{
-      console.log( 'Bienvenido', user );
+      this.ngxToastServ.onSuccess(`Bienvenido ${user.name}`, 'Ya puede acceder a todas las funcionalidades de la plataforma');
       this.currentUser.next(nextUser);
       this.isloggedSubject.next(true);
       localStorage.setItem( 'user_logged', JSON.stringify(nextUser));
@@ -54,6 +57,7 @@ export class AuthService {
   }
 
   logout():void {
+    this.ngxToastServ.onWarning(`Sesión cerrada`, 'Ha finalizado su sesión, podrá seguir en la plataforma pero no ejercer su compra!');
     localStorage.removeItem('user_logged');
     this.currentUser.next({name:'',  email:'', pass:''});
     this.isloggedSubject.next(false);

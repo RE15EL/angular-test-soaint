@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serverAPI": "json-server --watch server/db.json --port 3000",
-    "authAPI":"json-server    --watch server/auth_db.json --port 3200"
+    "authAPI": "json-server    --watch server/auth_db.json --port 3200"
   },
   "private": true,
   "dependencies": {
@@ -26,6 +26,7 @@
     "@ng-bootstrap/ng-bootstrap": "^13.0.0",
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.0",
+    "ngx-toast-notifier": "0.0.7",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

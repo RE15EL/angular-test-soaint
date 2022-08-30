@@ -35,6 +35,18 @@
       "email": "reisel@gmail.com",
       "pass": "reisel",
       "id": 6
+    },
+    {
+      "name": "Valeria",
+      "email": "valeria@gmail.com",
+      "pass": "valeria",
+      "id": 7
+    },
+    {
+      "name": "Humbe",
+      "email": "humbe@gmail.com",
+      "pass": "humberto",
+      "id": 8
     }
   ]
 }
