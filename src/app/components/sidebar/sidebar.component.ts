@@ -14,7 +14,7 @@ export class SidebarComponent {
   time = {hour: 12, minute: 30};
   isUserLogged!:boolean;
   qty:number=0;
-  userLogged$ = this.authSvc.currentUser$;
+  userLogged$ = this.authSvc.currentUser$; 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
