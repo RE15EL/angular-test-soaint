@@ -21,6 +21,9 @@ import { TimePickerComponent } from './shared/components/time-picker/time-picker
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HoursDirectiveDirective } from './shared/directives/hours-directive.directive';
 
+//ngrx
+import { StoreModule } from '@ngrx/store';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,8 +41,9 @@ import { HoursDirectiveDirective } from './shared/directives/hours-directive.dir
     NgBootstrapModule,
     NgxToastNotifierModule.forRoot(),
     ProductsModule,
-    FormsModule,
-    ReactiveFormsModule
+    FormsModule, 
+    ReactiveFormsModule,
+    StoreModule.forRoot({  }),
   ],
   providers: [],
   bootstrap: [AppComponent]
