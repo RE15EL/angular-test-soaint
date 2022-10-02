@@ -23,6 +23,9 @@ import { HoursDirectiveDirective } from './shared/directives/hours-directive.dir
 
 //ngrx
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { ROOT_REDUCERS } from './state/app.state';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,8 @@ import { StoreModule } from '@ngrx/store';
     ProductsModule,
     FormsModule, 
     ReactiveFormsModule,
-    StoreModule.forRoot({  }),
+    StoreModule.forRoot( ROOT_REDUCERS),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]
