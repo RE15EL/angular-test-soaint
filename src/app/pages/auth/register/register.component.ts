@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { User } from '../interfaces/user.interface';
+import { User } from '../../users/interfaces/user.interface';
 
 @Component({
   selector: 'app-register',
@@ -28,6 +28,7 @@ export class RegisterComponent implements OnInit {
       name: String(this.registerForm.value.name),
       email:String(this.registerForm.value.email),
       pass:String(this.registerForm.value.pass),
+      roles:['read']
     };
     this.authSvc.register(user)
       .pipe()

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { User } from '../interfaces/user.interface';
+import { User } from '../../users/interfaces/user.interface';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +28,8 @@ export class LoginComponent implements OnInit {
     const user:User= {
       email:String(this.loginForm.value.email),
       pass:String(this.loginForm.value.pass),
-      name:''
+      name:'',
+      roles:['read']
     };
     this.authSvc.login( user);
   }

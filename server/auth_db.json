@@ -1,52 +1,11 @@
 {
   "users": [
     {
-      "name": "Jaila",
-      "email": "jaila@gmail.com",
-      "pass": "jaila0205",
-      "id": 1
-    },
-    {
       "name": "Reisel",
       "email": "reisel@gmail.com",
       "pass": "reisel",
-      "id": 2
-    },
-    {
-      "name": "ana",
-      "email": "ana@gmail.com",
-      "pass": "analeonor",
-      "id": 3
-    },
-    {
-      "name": "olga",
-      "email": "olga@gmail.com",
-      "pass": "olgalidia",
-      "id": 4
-    },
-    {
-      "name": "Jairo",
-      "email": "jairo@gmail.com",
-      "pass": "jairo",
-      "id": 5
-    },
-    {
-      "name": "reisel",
-      "email": "reisel@gmail.com",
-      "pass": "reisel",
-      "id": 6
-    },
-    {
-      "name": "Valeria",
-      "email": "valeria@gmail.com",
-      "pass": "valeria",
-      "id": 7
-    },
-    {
-      "name": "Humbe",
-      "email": "humbe@gmail.com",
-      "pass": "humberto",
-      "id": 8
-    }
+      "id": 1,
+      "roles":["read"]
+    }    
   ]
 }

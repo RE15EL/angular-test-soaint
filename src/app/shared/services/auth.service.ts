@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxToastService } from 'ngx-toast-notifier';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { User } from 'src/app/pages/auth/interfaces/user.interface';
+import { User } from 'src/app/pages/users/interfaces/user.interface';
 import { CartService } from './cart.service';
 
 @Injectable({
@@ -12,7 +12,7 @@ import { CartService } from './cart.service';
 export class AuthService {
   private apiUrl= 'http://localhost:3200';
   private isloggedSubject=  new BehaviorSubject<boolean>(false);
-  currentUser= new BehaviorSubject<User>({name:'',  email:'', pass:''});
+  currentUser= new BehaviorSubject<User>({name:'',  email:'', pass:'', roles:['read']});
   users:User[]=[];
 
   constructor(private http:HttpClient, private router:Router,private cartSvc:CartService, private ngxToastServ:NgxToastService) {
@@ -59,7 +59,7 @@ export class AuthService {
   logout():void {
     this.ngxToastServ.onWarning(`Sesión cerrada`, 'Ha finalizado su sesión, podrá seguir en la plataforma pero no ejercer su compra!');
     localStorage.removeItem('user_logged');
-    this.currentUser.next({name:'',  email:'', pass:''});
+    this.currentUser.next({name:'',  email:'', pass:'', roles:['read']});
     this.isloggedSubject.next(false);
     this.cartSvc.resetCart();
     this.router.navigate(['/auth/login']);
@@ -72,5 +72,9 @@ export class AuthService {
   
   getUsers():Observable<User[]>{
     return this.http.get<User[]>(`${this.apiUrl}/users`);
+  }
+
+  getCurrentUser(){
+    return this.currentUser;
   }
 }
