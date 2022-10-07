@@ -58,6 +58,7 @@ export class CheckoutComponent implements OnInit {
             // console.log(res);
             this.ngxToastServ.onSuccess(`Compra satisfactoria `, 'Ha realizado el pago correctamente, su orden será procesada inmediatamente');
             this.cartSvc.resetCart();
+            this.router.navigate(['/']);
           }  
         )
       )

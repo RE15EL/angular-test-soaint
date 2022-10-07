@@ -7,14 +7,16 @@ import { CartService } from 'src/app/shared/services/cart.service';
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
-  total$ = this.CartSvc.totalActions$;
-  cart$= this.CartSvc.cartActions$;
-  
-  constructor( private CartSvc: CartService) { }
+  total$ = this.cartSvc.totalActions$;
+  cart$= this.cartSvc.cartActions$;
+  qty$= this.cartSvc.qtyActions$;
 
-  ngOnInit(): void {
+  constructor( private cartSvc: CartService) { }
+
+  ngOnInit(): void {    
+    
   }
   deleteProd(id:number):void{
-    this.CartSvc.delProdById(id);
+    this.cartSvc.delProdById(id);
   }
 }

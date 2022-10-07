@@ -156,6 +156,22 @@
       "pickup": true,
       "date": "7/10/2022",
       "id": 5
+    },
+    {
+      "name": "reisel",
+      "shippingAddress": "boyeros",
+      "city": "jairo",
+      "pickup": true,
+      "date": "7/10/2022",
+      "id": 6
+    },
+    {
+      "name": "boyeros",
+      "shippingAddress": "jairo",
+      "city": "jairo",
+      "pickup": true,
+      "date": "7/10/2022",
+      "id": 7
     }
   ],
   "detailsOrders": [

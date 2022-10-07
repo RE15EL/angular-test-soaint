@@ -1,29 +1,55 @@
 <div class="containner">
-    <div class="table-container">
-        <table class="table-striped table-hover">
-            <thead>
-                <th>Producto</th>
-                <th>Cantidad</th>
-                <th>Precio (u)</th>
-                <th>Subtotal</th>
-                <th></th>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of (cart$ | async)">
-                    <td> {{ item.name }}</td>
-                    <td> {{ item.qty }}</td>
-                    <td> {{ item.price | currency}}</td>
-                    <td> {{ item.price * item.qty | currency}} </td>
-                    <td> 
-                        <button mat-button color="warn" (click)="deleteProd(item.id)">
-                            <mat-icon class="mat-18">delete</mat-icon>
-                        </button>     
-                    </td>
-                </tr>
-            </tbody>
-        </table>    
-    </div>
-    <div class="total-container">
-        <p class="total"><strong> Total:   {{ total$ | async | currency}} </strong>  </p>
-    </div>
+    <ng-container *ngIf="(qty$|async)==0; else details">
+        <mat-card class="shipping-card">
+            <mat-card-header>
+                <mat-card-title>Su carrito de compras esta vacío</mat-card-title>
+            </mat-card-header> 
+            <mat-card-content class="row p-3">
+                <div class="imggg col col-4-sm d-flex justify-content-center align-items-center">
+                    <img matCardImage src="./../../../assets/img/empty_shopping_cart.png" 
+                    class="img-fluid imgg ">
+                </div>
+                <div class="col col-8 d-flex justify-content-center align-items-center flex-column">
+                    <div class="des text-center">
+                        <p  class="desc ">
+                            Le brindamos una amplia variedad de <a routerLink="/products">productos</a> de distintas categorías (Libros, Electrónica, Computadoras),
+                            los cuales puede visualizar y agregar a su carrito si así lo desea. 
+                        </p>
+                        <h4>
+                            <a mat-raised-button routerLink="/products" class="bt"> Visualizar productos</a>
+                        </h4>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </ng-container>
+    <ng-template #details>
+        <div class="table-container">
+            <table class="table-striped table-hover">
+                <thead>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio (u)</th>
+                    <th>Subtotal</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of (cart$ | async)">
+                        <td> {{ item.name }}</td>
+                        <td> {{ item.qty }}</td>
+                        <td> {{ item.price | currency}}</td>
+                        <td> {{ item.price * item.qty | currency}} </td>
+                        <td> 
+                            <button mat-button color="warn" (click)="deleteProd(item.id)">
+                                <mat-icon class="mat-18">delete</mat-icon>
+                            </button>     
+                        </td>
+                    </tr>
+                </tbody>
+            </table>    
+        </div>
+        <div class="total-container">
+            <p class="total"><strong> Total:   {{ total$ | async | currency}} </strong>  </p>
+        </div>
+    </ng-template>
 </div>
