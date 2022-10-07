@@ -27,12 +27,12 @@ export class RegisterComponent implements OnInit {
     const user:User= {
       name: String(this.registerForm.value.name),
       email:String(this.registerForm.value.email),
-      pass:String(this.registerForm.value.pass),
+      password:String(this.registerForm.value.pass),
       roles:['read']
     };
     this.authSvc.register(user)
       .pipe()
-      .subscribe( res => console.log(res));
+      .subscribe( );
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { CartService } from 'src/app/shared/services/cart.service';
 import { User } from '../../users/interfaces/user.interface';
 
 @Component({
@@ -13,11 +14,11 @@ export class LoginComponent implements OnInit {
   hide = true;
   loginForm= this.fb.group({
     email:['', [Validators.email, Validators.required]],
-    pass:['', [Validators.minLength(5), Validators.required]],
+    password:['', [Validators.minLength(5), Validators.required]],
 
   });
 
-  constructor(private fb:FormBuilder , public authSvc:AuthService, private router:Router) { }
+  constructor(private fb:FormBuilder , public authSvc:AuthService, private router:Router, private cartSvc:CartService) { }
 
   ngOnInit(): void {
 
@@ -25,13 +26,18 @@ export class LoginComponent implements OnInit {
 
   onSubmit():void{
     // console.log('valores', this.loginForm.value);  
+    const {email, password} = this.loginForm.value;
     const user:User= {
-      email:String(this.loginForm.value.email),
-      pass:String(this.loginForm.value.pass),
+      email:String(email),
+      password:String(password),
       name:'',
       roles:['read']
-    };
-    this.authSvc.login( user);
+    };    
+    this.authSvc.login( user )
+      .pipe()
+      .subscribe( ()=>{
+        this.cartSvc.resetCart();
+      } );
   }
 
 }

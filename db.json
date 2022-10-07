@@ -148,6 +148,14 @@
       "pickup": true,
       "date": "30/8/2022",
       "id": 4
+    },
+    {
+      "name": "reisel",
+      "shippingAddress": "Reisel",
+      "city": "Boyeros",
+      "pickup": true,
+      "date": "7/10/2022",
+      "id": 5
     }
   ],
   "detailsOrders": [

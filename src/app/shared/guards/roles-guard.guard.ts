@@ -10,11 +10,10 @@ import { AuthService } from '../services/auth.service';
 })
 export class RolesGuardGuard implements CanActivate {
 
-  userLogged$!:User;
-
-  constructor( private authSvc:AuthService, private router:Router, private ngxToastServ:NgxToastService){
-    authSvc.currentUser$.subscribe( res => this.userLogged$=res);
-    
+  constructor( 
+    private authSvc:AuthService,
+    private router:Router,
+    private ngxToastServ:NgxToastService){    
   }
 
   canActivate(
@@ -26,8 +25,8 @@ export class RolesGuardGuard implements CanActivate {
   }
 
   checkUserLogin( route:ActivatedRouteSnapshot ):boolean{
-    const currentUser = this.authSvc.getCurrentUser();
-    const userRoles = currentUser.value.roles; //obtener los roles del currentUser
+    let userRoles:string[]=[];
+    this.authSvc.getCurrentUser$().subscribe( (user:User) => userRoles= [...user.roles]);//obtener los roles del currentUser
     if( userRoles.includes(route.data['role']) ){
       return true;
     }else{

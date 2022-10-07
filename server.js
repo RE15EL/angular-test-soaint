@@ -4,7 +4,7 @@ const jsonServer = require('json-server')
 const jwt = require('jsonwebtoken')
 
 const server = jsonServer.create()
-const router = jsonServer.router('./db.json')
+const router = jsonServer.router('./database.json')
 const userdb = JSON.parse(fs.readFileSync('./users.json', 'UTF-8'))
 
 server.use(bodyParser.urlencoded({extended: true}))
@@ -33,8 +33,8 @@ function isAuthenticated({email, password}){
 // Register New User
 server.post('/auth/register', (req, res) => {
   console.log("register endpoint called; request body:");
+  const {email, password,name, roles} = req.body;
   console.log(req.body);
-  const {email, password} = req.body;
 
   if(isAuthenticated({email, password}) === true) {
     const status = 401;
@@ -58,7 +58,7 @@ fs.readFile("./users.json", (err, data) => {
     var last_item_id = data.users[data.users.length-1].id;
 
     //Add new user
-    data.users.push({id: last_item_id + 1, email: email, password: password}); //add some data
+    data.users.push({id: last_item_id + 1, email: email, password: password,name:name, roles:roles}); //add some data
     var writeData = fs.writeFile("./users.json", JSON.stringify(data), (err, result) => {  // WRITE
         if (err) {
           const status = 401
@@ -78,8 +78,8 @@ fs.readFile("./users.json", (err, data) => {
 // Login to one of the users from ./users.json
 server.post('/auth/login', (req, res) => {
   console.log("login endpoint called; request body:");
-  console.log(req.body);
   const {email, password} = req.body;
+  console.log(req.body);
   if (isAuthenticated({email, password}) === false) {
     const status = 401
     const message = 'Incorrect email or password'

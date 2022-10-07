@@ -12,7 +12,7 @@ export class PermissionsGuard implements CanActivate {
   isAdmin:boolean = false;
 
   constructor( private authSvc:AuthService, private ngxToastServ:NgxToastService, private router:Router){
-    authSvc.isLoggued$.subscribe( res => this.isUserLogged=res);
+    authSvc.getIsLoggued$().subscribe( res => this.isUserLogged=res);
   }
 
   canActivate():Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree{

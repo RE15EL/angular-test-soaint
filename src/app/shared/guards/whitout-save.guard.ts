@@ -10,7 +10,7 @@ export class WhitoutSaveGuard implements CanActivate, CanDeactivate<unknown> {
   isUserLogged !:boolean;
   
 constructor(private authSvc:AuthService){
-  authSvc.isLoggued$.subscribe( res => this.isUserLogged=res);
+  authSvc.getIsLoggued$().subscribe( res => this.isUserLogged=res);
 }
 
   canActivate(
@@ -27,7 +27,7 @@ constructor(private authSvc:AuthService){
       if( this.isUserLogged ){
         return true;
       }else{
-        return confirm('Puede ser que tenga cambios sin guardar, por favor revise!')
+        return confirm('Debe estar logueado en la plataforma para poder realizar el pago de su pedido!');
       }
   }
   

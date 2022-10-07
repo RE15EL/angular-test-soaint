@@ -34,7 +34,7 @@ export class CheckoutComponent implements OnInit {
               private router:Router,
               private ngxToastServ:NgxToastService) 
   {
-    authSvc.isLoggued$.subscribe( res => this.isUserLogged=res);
+    authSvc.getIsLoggued$().subscribe( res => this.isUserLogged=res);
   }
 
   ngOnInit(): void {

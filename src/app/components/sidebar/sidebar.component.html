@@ -49,22 +49,24 @@
       <a routerLink="['/']" class="links"> My SOAINT test  </a>
       <span class="spacer"></span> 
       <div class="rightside-container d-flex flex-row align-items-center justify-content-end">
-        <div class="user-logged" *ngIf="isUserLogged">
-          <p> {{ (userLogged$ | async)?.name | json}} </p>
+        <!-- nombre del usuario logueado -->
+        <!-- <span> {{ isUserLogged$ | async | json}}</span> -->
+        <div class="user-logged" *ngIf= "(isUserLogged$ | async)" >
+          <span>  {{ (currentUserLogged$ | async)?.email | json }} </span>        
         </div>
+
         <!-- login side -->
-        <div class="login">
+        <div class="login">          
           <span [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
             <mat-icon class="mat-18" >person</mat-icon>
           </span>
           <!-- menu -->
           <mat-menu #menu="matMenu" yPosition="below">
-            <!-- routerLink="/auth/login"  -->
             <a mat-menu-item routerLink="/auth/register" >
               <mat-icon>app_registration</mat-icon>
               <span >Registro</span>
             </a>
-            <ng-container *ngIf="!isUserLogged; else loginAction">
+            <ng-container *ngIf="!(isUserLogged$ | async); else loginAction">
               <a mat-menu-item  routerLink="/auth/login" >
                 <mat-icon>login</mat-icon>
                 <span >Iniciar sesión</span>
