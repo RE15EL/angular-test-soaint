@@ -1,4 +1,4 @@
-<b *ngIf= "(loading$ | async)" >CARGANDO... </b>
+<!-- <app-spinner></app-spinner> -->
 <div class="body">
     <app-product *ngFor="let product of (products$ | async)" [product]="product" (addToCart)="addToCart($event)"> </app-product>
 </div>

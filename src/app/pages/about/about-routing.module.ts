@@ -4,7 +4,7 @@ import { PermissionsGuard } from 'src/app/shared/guards/permissions.guard';
 import { AboutComponent } from './about.component';
 
 const routes: Routes = [
-  { path: '', component: AboutComponent, canActivate: [PermissionsGuard] }
+  { path: '', component: AboutComponent,}
 ];
 
 @NgModule({

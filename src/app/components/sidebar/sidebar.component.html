@@ -4,10 +4,11 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'push' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar class="head">
+    <mat-toolbar class="head" >
 
     </mat-toolbar>
     <div class="profile">
+      
       <a routerLink="/about">
         <img src="./../../../assets/img/perfil.jpg" class="img-fluid imgg rounded-circle" alt="">
       </a>
@@ -104,6 +105,9 @@
     </mat-toolbar>
     <!-- Add Content Here -->
     <div class="main-container">
+      <span *ngIf="loading$ | async">
+        <app-spinner></app-spinner>
+      </span>
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>

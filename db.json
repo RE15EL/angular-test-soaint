@@ -172,6 +172,22 @@
       "pickup": true,
       "date": "7/10/2022",
       "id": 7
+    },
+    {
+      "name": "boyeros",
+      "shippingAddress": "jairo",
+      "city": "adminApple",
+      "pickup": true,
+      "date": "10/10/2022",
+      "id": 8
+    },
+    {
+      "name": "boyeros",
+      "shippingAddress": "jairo",
+      "city": "adminApple",
+      "pickup": true,
+      "date": "10/10/2022",
+      "id": 9
     }
   ],
   "detailsOrders": [

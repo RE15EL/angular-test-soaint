@@ -6,7 +6,12 @@ const routes: Routes = [
   { path: 'products', loadChildren: ()=> import('./pages/products/products.module').then( m=>m.ProductsModule)},
   { path: 'checkout', loadChildren: () => import('./pages/checkout/checkout.module').then(m => m.CheckoutModule) },
   { path: 'auth', loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule) },
-  { path: 'orders', loadChildren: () => import('./pages/orders/orders.module').then(m => m.OrdersModule) },
+  { path: 'orders', loadChildren: () => import('./pages/orders/orders.module').then(m => m.OrdersModule) ,
+    data:{
+      role:'write'
+    },
+    canActivate:[RolesGuardGuard]  
+  },
   { path: 'about', loadChildren: () => import('./pages/about/about.module').then(m => m.AboutModule) },
   { 
     path: 'admin', loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule),
