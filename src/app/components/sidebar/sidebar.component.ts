@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { User } from 'src/app/pages/users/interfaces/user.interface';
 import { AppState } from 'src/app/state/app.state';
 import { Store } from '@ngrx/store';
 import { selectLoading } from 'src/app/state/selectors/products.selectors';

@@ -5,16 +5,9 @@
       [mode]="(isHandset$ | async) ? 'push' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar class="head" >
-
-    </mat-toolbar>
-    <div class="profile">
       
-      <a routerLink="/about">
-        <img src="./../../../assets/img/perfil.jpg" class="img-fluid imgg rounded-circle" alt="">
-      </a>
-      <h4 class="name">Reisel Valle Rojas</h4>
-      <p class="titulo"> Ingeniero en Ciencias Informáticas</p>
-    </div>
+    </mat-toolbar>
+    
     <mat-divider></mat-divider>
     <mat-nav-list class="menu">
       <a mat-list-item routerLink="/products" class="menu-item">
