@@ -1,5 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
-
+  
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'push' : 'side'"
@@ -97,10 +97,10 @@
         matBadgePosition="above after" matBadgeColor="primary" matBadgeSize="small"></span> -->
     </mat-toolbar>
     <!-- Add Content Here -->
-    <div class="main-container">
-      <span *ngIf="loading$ | async">
+    <div class="main-container"> 
+      <div class="overlay"  *ngIf="loading$ | async">
         <app-spinner></app-spinner>
-      </span>
+      </div>     
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>

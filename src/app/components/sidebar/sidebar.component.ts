@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { AppState } from 'src/app/state/app.state';
 import { Store } from '@ngrx/store';
 import { selectLoading } from 'src/app/state/selectors/products.selectors';
+import { SpinnerService } from 'src/app/shared/services/spinner.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -16,8 +17,8 @@ import { selectLoading } from 'src/app/state/selectors/products.selectors';
 export class SidebarComponent {
   currentUserLogged$ = this.authSvc.getCurrentUser$(); 
   isUserLogged$= this.authSvc.getIsLoggued$();
-  loading$:Observable<boolean>= new Observable();  
   qty:number=0;
+  loading$=this.spinnerSvc.isLoading$;  
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -28,10 +29,11 @@ export class SidebarComponent {
   constructor(private breakpointObserver: BreakpointObserver,
               private cartSvc:CartService,
               private authSvc:AuthService,
-              private store:Store<AppState>)
+              private store:Store<AppState>,
+              private spinnerSvc:SpinnerService)
   {
     cartSvc.qtyActions$.subscribe( res => this.qty= res);
-    this.loading$= this.store.select( selectLoading);
+    // this.loading$= this.store.select( selectLoading);
   }
 
 
